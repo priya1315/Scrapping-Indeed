@@ -86,10 +86,10 @@ def Saving():
         if request.method == "POST":
             if 'num' in request.form:
                 num = request.form['num']
-                Newgoal.saveInfo(session['user_name'], num)
-                Newgoal.saveMoney(session['user_name'], num)
-                Newgoal.GetPercentage(session['user_name'])
-        result = Newgoal.getInfo(session['user_name'])
+                Newgoal.saveInfo(session['user_name'],int(num))
+                Newgoal.saveMoney(session['user_name'],int(num))
+                Newgoal.getInfo(session['user_name'])
+        result = Newgoal.GetA_Money()
                 #Newgoal.saveMoney(session['user_name'], int(amt))
 
         #percentage = Newgoal.Percentage(session['user_name'])
@@ -98,7 +98,7 @@ def Saving():
         #result = Newgoal.getInfo(session['user_name'])
         return render_template('Goal.html', posts=posts, result = result)
 
-        # return render_template('Goal.html', posts = posts)
+        #return render_template('Goal.html', posts = posts)
     else:
         return render_template('base.html')
 

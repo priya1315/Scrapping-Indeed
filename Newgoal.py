@@ -101,14 +101,14 @@ def get_body(id,body):
     i = Goal(id)
     i.body = body
     Goals[id] = i
-def Save_body(id,money):
+def Save_body(id,body):
     if id in Goals:
         i = Goals[id]
         del Goals[id]
     else:
         i = Goal(id)
     Goals[id] = i
-    i.body = money
+    i.body = body
 def GetBody(id):
     if id in Goals:
         return Goals[id].body
@@ -168,28 +168,35 @@ class Amount:
 
 Value = shelve.open("Rate")
 
-def saveInfo(id,amount):
+
+def saveInfo(id,money):
     i = Amount(id)
-    i.money = amount
+    i.money = money
     Value[id] = i
 
-def saveMoney(id,amount):
+def saveMoney(id,money):
     if id in Value: # retrieve record
         i = Value[id]
         del Value[id]
     else: # new record
         i = Amount(id)
-
-    i.money = amount
     Value[id] = i
+    i.money = money
+
 
 def getInfo(id):
     if id in Value:
         i =  Value[id].money
-        return i
-
+        return int(i)
     else:
         return 0
+
+
+
+
+
+
+
 
 '''
 get_body("184124U",100)
@@ -214,16 +221,17 @@ def GetT_Goal():
     for i in klist:
         x.append(int(Goals[i].body))
     return sum(x)
-l = []
-def GetA_Money(id):
-    if id in Value:
-        i = getInfo(id)
-        for j in i:
-            l.append(int(j))
-        return l
-        #return sum(l)
-print(GetA_Money('184124U'))
 
+def GetA_Money():
+    klist = list(Value.keys())
+    l = []
+    for i in klist:
+        l.append(int(Value[i].money))
+    return sum(l)
+
+
+print(GetT_Goal())
+print(GetA_Money())
 
 
 

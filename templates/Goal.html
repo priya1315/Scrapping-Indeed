@@ -13,10 +13,12 @@
   {% if session['id'] %}
 <a class="action" href="{{ url_for('create') }}">Add New Goals</a>
       <form action="/" method="POST">
-          Money Saved: <input type="number" name="num" value="{{ result }}">
+          Money Saved: <input type="number" name="num" >
           <input type="submit">
 <p><a class="action" href="{{ url_for('Add', id = posts['id']) }}">ADD</a></p>
+
 {{ result }}
+
 {%for post in posts%}
 {{post['percentage']}}
 {{ post['value']}}
