@@ -89,8 +89,7 @@ def Saving():
                 Newgoal.saveInfo(session['user_name'], num)
                 Newgoal.saveMoney(session['user_name'], num)
                 Newgoal.GetPercentage(session['user_name'])
-                Newgoal.getInfo(session['user_name'])
-        result = Newgoal.GetA_Money(session['user_name'])
+        result = Newgoal.getInfo(session['user_name'])
                 #Newgoal.saveMoney(session['user_name'], int(amt))
 
         #percentage = Newgoal.Percentage(session['user_name'])
