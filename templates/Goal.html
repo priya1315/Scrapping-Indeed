@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='style.css') }}">
+{% block header %}
+  <h1 id = "goal">{% block title %}GOALS{% endblock %}</h1>
+  {% if session['id'] %}
+<a class="action" href="{{ url_for('create') }}">Add New Goals</a>
+      <form action="/" method="POST">
+          Money Saved: <input type="number" name="num" value="{{ result }}">
+          <input type="submit">
+<p><a class="action" href="{{ url_for('Add', id = posts['id']) }}">ADD</a></p>
+{{ result }}
+{%for post in posts%}
+{{post['percentage']}}
+{{ post['value']}}
+{%endfor%}
+ {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+
+        <div class = "box">
+            <article class="post">
+                <header>
+                    <div class = 'left'>
+                        <div id ="about">by {{ post['username'] }} on {{ post['created'] }}</div>
+                        <h1 id = "Title">{{ post['title'] }}</h1>
+                    </div>
+                        {% if session['user_name'] == post['username'] %}
+                            <a class="action" href="{{ url_for('update', id = post['id']) }}">Edit</a>
+                        {% endif %}
+                </header>
+                    <div class = 'right'>
+
+
+                        <p class = 'Due'>Finish Goal by:{{ post['Due'] }}</p>
+                        <p class="body">Amount: {{ post['body'] }}</p>
+                        <p class = 'Dis'>Description:  {{ post['description'] }} </p>
+
+
+
+
+                        <div id="progressbar"  >
+                            <div style =" width: {{post['percentage']}}%; text-align: center" >{{post['percentage']}}%</div>
+                        </div>
+                    </div>
+            </article>
+            {% if not loop.last %}
+                <hr>
+            {%endif%}
+        </div>
+    {%endfor%}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<title>Saving</title>
+
+<link href='http://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type='text/css'>
+<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='style.css') }}">
+
+<body>
+<div id="header-wrapper">
+
+  <div id="header" class="container">
+
+   <div id="logo">
+
+ <h1><a href="#">Name</a></h1>
+
+ </div>
+
+ <div id="menu">  
+ <ul>
+ <li ><a href="#">Home</a></li>
+ <li class="active"><a href="#">Saving</a></li>
+  {% if session['id'] %}
+      <li><span>{{ session['user_name'] }}</span>
+      <li><a href="{{ url_for('Logout') }}">Log Out</a>
+    {% else %}
+      <li><a href="{{ url_for('Register') }}">Register</a>
+      <li><a href="{{ url_for('Login') }}">Log In</a>
+    {% endif %}
+ </ul>
+
+ </div>
+ </div>
+</div>
+{% block header %}
+  <h1 id = "goal">{% block title %}GOALS{% endblock %}</h1>
+  {% if session['id'] %}
+    <a class="action" href="{{ url_for('create') }}">Add New Goals</a>
+<p><a class="action" href="{{ url_for('Add', id = post['id']) }}">ADD</a></p>
+  {% endif %}
+{% endblock %}
+<section class="content">
+
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+</section>
+{% block content %}{% endblock %}
+</body>
+</html>

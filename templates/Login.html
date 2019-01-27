@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='Login.css') }}">
+<div class = "contact-form">
+{% block header %}
+    <h2>{% block title %}Login{% endblock %}</h2>
+{% endblock %}
+{% block content %}
+ <form method="post">
+     <p><label for="username">Username</label><input type = "username" name="username" id="username" required></p>
+
+     <p><label for="password">Password</label>
+         <div class="col-md-6">
+         <input type="password" name="password" id="password"  class="form-control"  required></p>
+     <p><input type="submit" value="Sign In"></p>
+     <p><input type="checkbox" onclick="myFunction()">Show Password</p>
+     <p><input type="checkbox">Remember Me</p>
+     {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+     {% endfor %}
+  </form>
+</div>
+{% endblock %}
+<script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+</body>
+</html>

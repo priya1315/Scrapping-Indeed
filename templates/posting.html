@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='Post.css') }}">
+<div class = "contact-form">
+{% block content %}
+{% block header %}
+  <h2>{% block title %}Goals{% endblock %}</h2>
+{% endblock %}
+
+
+  <form method="post">
+    <label for="title">Title</label><input name="title" id="title" value="{{ request.form['title'] }}" required>
+    <label for="body">Amount</label><input name="body" id="body" value=" {{ request.form['body'] }}">
+    <label for="description">Reason</label><input name="description" id="description" value=" {{ request.form['description'] }}">
+    <label for="Due">Finish by:</label><input name="Due" id="date" type="date" value=" {{ request.form['Due'] }}">
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}
+</div>
+</body>
+</html>
